@@ -1,1 +1,131 @@
-var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};!function(t,e){"object"===("undefined"==typeof exports?"undefined":_typeof(exports))&&"undefined"!=typeof module?module.exports=e():"function"==typeof define&&define.amd?define(e):t.lozad=e()}(this,function(){"use strict";function t(t){t.setAttribute("data-loaded",!0)}var e=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var o=arguments[e];for(var r in o)Object.prototype.hasOwnProperty.call(o,r)&&(t[r]=o[r])}return t},o=document.documentMode,r={rootMargin:"0px",threshold:0,load:function(t){if("picture"===t.nodeName.toLowerCase()){var e=document.createElement("img");o&&t.getAttribute("data-iesrc")&&(e.src=t.getAttribute("data-iesrc")),t.appendChild(e)}t.getAttribute("data-src")&&(t.src=t.getAttribute("data-src")),t.getAttribute("data-srcset")&&(t.srcset=t.getAttribute("data-srcset")),t.getAttribute("data-background-image")&&(t.style.backgroundImage="url("+t.getAttribute("data-background-image")+")")}},n=function(t){return"true"===t.getAttribute("data-loaded")},i=function(e){return function(o,r){o.forEach(function(o){o.intersectionRatio>0&&(r.unobserve(o.target),n(o.target)||(e(o.target),t(o.target)))})}},a=function(t){return t instanceof Element?[t]:t instanceof NodeList?t:document.querySelectorAll(t)};return function(){var o=arguments.length>0&&void 0!==arguments[0]?arguments[0]:".lozad",u=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},c=e({},r,u),d=c.rootMargin,f=c.threshold,s=c.load,l=void 0;return window.IntersectionObserver&&(l=new IntersectionObserver(i(s),{rootMargin:d,threshold:f})),{observe:function(){for(var e=a(o),r=0;r<e.length;r++)n(e[r])||(l?l.observe(e[r]):(s(e[r]),t(e[r])))},triggerLoad:function(e){n(e)||(s(e),t(e))}}}});
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/*! lozad.js - v1.2.0 - 2018-01-23
+* https://github.com/ApoorvSaxena/lozad.js
+* Copyright (c) 2018 Apoorv Saxena; Licensed MIT */
+
+(function (global, factory) {
+  (typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.lozad = factory();
+})(this, function () {
+  'use strict';
+
+  var _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }return target;
+  };
+
+  /**
+   * Detect IE browser
+   * @const {boolean}
+   * @private
+   */
+  var isIE = document.documentMode;
+
+  var defaultConfig = {
+    rootMargin: '0px',
+    threshold: 0,
+    load: function load(element) {
+      if (element.nodeName.toLowerCase() === 'picture') {
+        var img = document.createElement('img');
+        if (isIE && element.getAttribute('data-iesrc')) {
+          img.src = element.getAttribute('data-iesrc');
+        }
+        element.appendChild(img);
+      }
+      if (element.getAttribute('data-src')) {
+        element.src = element.getAttribute('data-src');
+      }
+      if (element.getAttribute('data-srcset')) {
+        element.srcset = element.getAttribute('data-srcset');
+      }
+      if (element.getAttribute('data-background-image')) {
+        element.style.backgroundImage = 'url(' + element.getAttribute('data-background-image') + ')';
+      }
+    }
+  };
+
+  function markAsLoaded(element) {
+    element.setAttribute('data-loaded', true);
+  }
+
+  var isLoaded = function isLoaded(element) {
+    return element.getAttribute('data-loaded') === 'true';
+  };
+
+  var onIntersection = function onIntersection(load) {
+    return function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.intersectionRatio > 0) {
+          observer.unobserve(entry.target);
+
+          if (!isLoaded(entry.target)) {
+            load(entry.target);
+            markAsLoaded(entry.target);
+          }
+        }
+      });
+    };
+  };
+
+  var getElements = function getElements(selector) {
+    if (selector instanceof Element) {
+      return [selector];
+    }
+    if (selector instanceof NodeList) {
+      return selector;
+    }
+    return document.querySelectorAll(selector);
+  };
+
+  var lozad = function lozad() {
+    var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '.lozad';
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    var _defaultConfig$option = _extends({}, defaultConfig, options),
+        rootMargin = _defaultConfig$option.rootMargin,
+        threshold = _defaultConfig$option.threshold,
+        load = _defaultConfig$option.load;
+
+    var observer = void 0;
+
+    if (window.IntersectionObserver) {
+      observer = new IntersectionObserver(onIntersection(load), {
+        rootMargin: rootMargin,
+        threshold: threshold
+      });
+    }
+
+    return {
+      observe: function observe() {
+        var elements = getElements(selector);
+
+        for (var i = 0; i < elements.length; i++) {
+          if (isLoaded(elements[i])) {
+            continue;
+          }
+          if (observer) {
+            observer.observe(elements[i]);
+            continue;
+          }
+          load(elements[i]);
+          markAsLoaded(elements[i]);
+        }
+      },
+      triggerLoad: function triggerLoad(element) {
+        if (isLoaded(element)) {
+          return;
+        }
+
+        load(element);
+        markAsLoaded(element);
+      }
+    };
+  };
+
+  return lozad;
+});

@@ -1,1 +1,219 @@
-!function(o){var a={};function e(t){if(a[t])return a[t].exports;var i=a[t]={i:t,l:!1,exports:{}};return o[t].call(i.exports,i,i.exports,e),i.l=!0,i.exports}e.m=o,e.c=a,e.d=function(o,a,t){e.o(o,a)||Object.defineProperty(o,a,{configurable:!1,enumerable:!0,get:t})},e.n=function(o){var a=o&&o.__esModule?function(){return o.default}:function(){return o};return e.d(a,"a",a),a},e.o=function(o,a){return Object.prototype.hasOwnProperty.call(o,a)},e.p="",e(e.s=64)}({64:function(o,a,e){o.exports=e(65)},65:function(o,a,e){var t="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(o){return typeof o}:function(o){return o&&"function"==typeof Symbol&&o.constructor===Symbol&&o!==Symbol.prototype?"symbol":typeof o};function i(o,a){var e=!1;if(o=$(o),"undefined"!==(void 0===a?"undefined":t(a))){o.removeClass("is-invalid"),o.addClass("is-invalid"),o.nextAll(".invalid-feedback").remove();var i=!0,n=!1,r=void 0;try{for(var c,d=a[Symbol.iterator]();!(i=(c=d.next()).done);i=!0){var p=c.value;o.after('<div class="invalid-feedback">\n                <strong> '+p+" </strong>\n            </div>")}}catch(o){n=!0,r=o}finally{try{!i&&d.return&&d.return()}finally{if(n)throw r}}e=!0}else o.removeClass("is-invalid"),o.addClass("is-valid"),o.nextAll(".invalid-feedback").remove();return e}$(function(){$("#titulo,#precio,#categoria,#tipo_envio,#negociacion_precio,#intercambio_producto,#destacado,#descripcion").on("change",function(o){var a,e;a=o.target,(e=new FormData).append(a.id,a.value),$(a).parent().next(".spinner").addClass("loader"),axios.post("/producto/validar",e).then(function(o){switch($(a).parent().next(".spinner").removeClass("loader"),a.id){case"titulo":i(a,o.data.titulo);break;case"precio":i(a,o.data.precio);break;case"categoria":i(a,o.data.categoria);break;case"tipo_envio":i(a,o.data.tipo_envio);break;case"negociacion_precio":i(a,o.data.negociacion_precio);break;case"intercambio_producto":i(a,o.data.intercambio_producto);break;case"destacado":i(a,o.data.destacado);break;case"descripcion":i(a,o.data.descripcion)}}).catch(function(o){console.log(o)})}),$("#botonCreacionProducto").click(function(o){o.preventDefault();var a=!0,e=new FormData;e.append("titulo",$("#titulo").val()),e.append("precio",$("#precio").val()),e.append("categoria",$("#categoria").val()),e.append("tipo_envio",$("#tipo_envio").val()),e.append("negociacion_precio",$("#negociacion_precio").val()),e.append("intercambio_producto",$("#intercambio_producto").val()),e.append("destacado",$("#destacado").val()),e.append("descripcion",$("#descripcion").val()),axios.post("/producto/validar",e).then(function(o){i("#titulo",o.data.titulo)&&(a=!1),i("#precio",o.data.precio)&&(a=!1),i("#categoria",o.data.categoria)&&(a=!1),i("#tipo_envio",o.data.tipo_envio)&&(a=!1),i("#negociacion_producto",o.data.negociacion_producto)&&(a=!1),i("#intercambio_producto",o.data.intercambio_producto)&&(a=!1),i("#destacado",o.data.destacado)&&(a=!1),i("#descripcion",o.data.descripcion)&&(a=!1),!0===a&&$("#formularioCreacionProducto").submit()})})})}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 64);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 64:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(65);
+
+
+/***/ }),
+
+/***/ 65:
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function gestionarErrores(input, errores) {
+    var noEnviarFormulario = false;
+    input = $(input);
+    if ((typeof errores === "undefined" ? "undefined" : _typeof(errores)) !== ( true ? "undefined" : _typeof(undefined))) {
+        input.removeClass("is-invalid");
+        input.addClass("is-invalid");
+        input.nextAll(".invalid-feedback").remove();
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = errores[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var error = _step.value;
+
+                input.after("<div class=\"invalid-feedback\">\n                <strong> " + error + " </strong>\n            </div>");
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+
+        noEnviarFormulario = true;
+    } else {
+        input.removeClass("is-invalid");
+        input.addClass("is-valid");
+        input.nextAll(".invalid-feedback").remove();
+    }
+    return noEnviarFormulario;
+}
+
+function validateTarget(target) {
+    var formData = new FormData();
+    formData.append(target.id, target.value);
+    $(target).parent().next(".spinner").addClass("loader");
+    axios.post('/producto/validar', formData).then(function (response) {
+        $(target).parent().next(".spinner").removeClass("loader");
+        switch (target.id) {
+            case "titulo":
+                gestionarErrores(target, response.data.titulo);
+                break;
+            case "precio":
+                gestionarErrores(target, response.data.precio);
+                break;
+            case "categoria":
+                gestionarErrores(target, response.data.categoria);
+                break;
+            case "tipo_envio":
+                gestionarErrores(target, response.data.tipo_envio);
+                break;
+            case "negociacion_precio":
+                gestionarErrores(target, response.data.negociacion_precio);
+                break;
+            case "intercambio_producto":
+                gestionarErrores(target, response.data.intercambio_producto);
+                break;
+            case "destacado":
+                gestionarErrores(target, response.data.destacado);
+                break;
+            case "descripcion":
+                gestionarErrores(target, response.data.descripcion);
+                break;
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+$(function () {
+    $("#titulo,#precio,#categoria,#tipo_envio,#negociacion_precio,#intercambio_producto,#destacado,#descripcion").on('change', function (e) {
+        validateTarget(e.target);
+    });
+
+    $("#botonCreacionProducto").click(function (e) {
+        e.preventDefault();
+        var enviarFormulario = true;
+        var formData = new FormData();
+        formData.append('titulo', $("#titulo").val());
+        formData.append('precio', $("#precio").val());
+        formData.append('categoria', $("#categoria").val());
+        formData.append('tipo_envio', $("#tipo_envio").val());
+        formData.append('negociacion_precio', $("#negociacion_precio").val());
+        formData.append('intercambio_producto', $("#intercambio_producto").val());
+        formData.append('destacado', $("#destacado").val());
+        formData.append('descripcion', $("#descripcion").val());
+
+        axios.post('/producto/validar', formData).then(function (response) {
+            if (gestionarErrores("#titulo", response.data.titulo)) {
+                enviarFormulario = false;
+            }
+
+            if (gestionarErrores("#precio", response.data.precio)) {
+                enviarFormulario = false;
+            }
+
+            if (gestionarErrores("#categoria", response.data.categoria)) {
+                enviarFormulario = false;
+            }
+
+            if (gestionarErrores("#tipo_envio", response.data.tipo_envio)) {
+                enviarFormulario = false;
+            }
+
+            if (gestionarErrores("#negociacion_producto", response.data.negociacion_producto)) {
+                enviarFormulario = false;
+            }
+
+            if (gestionarErrores("#intercambio_producto", response.data.intercambio_producto)) {
+                enviarFormulario = false;
+            }
+
+            if (gestionarErrores("#destacado", response.data.destacado)) {
+                enviarFormulario = false;
+            }
+
+            if (gestionarErrores("#descripcion", response.data.descripcion)) {
+                enviarFormulario = false;
+            }
+
+            if (enviarFormulario === true) {
+                $("#formularioCreacionProducto").submit();
+            }
+        });
+    });
+});
+
+/***/ })
+
+/******/ });
