@@ -1,0 +1,151 @@
+.ng {
+    font-weight:bold;
+}
+
+.blanco {
+    color: gainsboro;
+}
+
+.negro {
+    color: black;
+}
+
+.bg-color-dark {
+    background-color: #343A40;
+}
+
+.bg-image {
+    background-image: url("http://www.col323webdesign.com/wp-content/uploads/credit-card-backgrounds-expitrans-accept-credit-cards-today.jpg");
+}
+
+.bg-color {
+    background-color: #E8EAEC;
+}
+
+.bg-color2 {
+    background-color: #E6E6E6;
+}
+
+.bg-color3 {
+    background-color: #1F3346;
+}
+
+.bg-color4 {
+    background-color: #f2f2f2;
+}
+
+.bg-color5 {
+    background-color: #0B3861;
+}
+
+.producto{
+    padding: 50px;
+}
+
+.marginTop{
+    margin-top: 150px;
+}
+
+.marginTopContent{
+    margin-top: 60px;
+}
+
+.marginTopFotoConversation{
+    margin-top: 60px;
+}
+
+
+.btnespacio{
+    padding: 40px;
+}
+
+.center{
+    display:block;
+    margin:auto;
+}
+
+.carousel-control-next-icon{
+    color:black;
+}
+
+.color-fondo{
+    background-color: #F2F2F2;
+}
+
+.img-size {
+    width: 500px;
+    height: 300px;
+}
+
+.ancho_max_imagen {
+    max-width:500px;
+    max-height:500px;
+}
+
+.ancho_max_imagen_2 {
+    max-width:350px;
+    max-height:350px;
+}
+
+.ancho_max_imagen_tabla {
+    max-width:125px;
+    max-height:125px;
+}
+
+.ancho_max_imagen_user {
+    max-width:225px;
+    max-height:225px;
+}
+
+.ancho_max_imagen_conversation {
+    max-width:60px;
+    max-height:60px;
+}
+
+.ancho_max_imagen_navbar {
+    max-width:45px;
+    max-height:45px;
+}
+
+
+.sticky {
+    position: sticky;
+    top: 60px;
+    z-index: 100;
+}
+
+.map {
+    width: 100%;
+    height: 350px;
+    box-shadow: 5px 5px 5px #888;
+}
+
+.mapfull {
+    width: 100%;
+    height: 300px;
+    box-shadow: 5px 5px 5px #888;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.relative {
+    position: relative;
+    width: 100%;
+    top: 0;
+}
+
+html{ height:100%; }
+body{ min-height:100%; padding:0; margin:0; position:relative; }
+
+body::after{ content:''; display:block; height:100px; }
+
+footer{
+    position:absolute;
+    bottom: 15px;
+    width:100%;
+    height:100px;
+}
