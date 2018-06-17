@@ -33,10 +33,10 @@ class DatabaseSeeder extends Seeder
 
             });
 
-            $valoraciones = factory(App\Valoracion::class, 1)->create([
-                'valora_user_id' => $user->id,
-                'valorado_user_id' => rand(1, 6),
-            ]);
+//            $valoraciones = factory(App\Valoracion::class, 1)->create([
+//                'valora_user_id' => $user->id,
+//                'valorado_user_id' => rand(1, 6),
+//            ]);
 
             $reviews = factory(App\Review::class, 1)->create([
                 'user_id' => $user->id,
