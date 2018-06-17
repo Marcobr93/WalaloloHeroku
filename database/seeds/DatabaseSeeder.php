@@ -20,11 +20,11 @@ class DatabaseSeeder extends Seeder
             ]);
 
             $productos->each(function (App\Producto $producto) use ($user) {
-//                $contraofertas = factory(App\Contraoferta::class, 1)->create([
-//                    'vendedor_user_id' => $user->id,
-//                    'comprador_user_id' => rand(1, 8),
-//                    'producto_id' => $producto->id,
-//                ]);
+                $contraofertas = factory(App\Contraoferta::class, 1)->create([
+                    'vendedor_user_id' => $user->id,
+                    'comprador_user_id' => rand(1, 8),
+                    'producto_id' => $producto->id,
+                ]);
 
                 $visitas = factory(\App\Visita::class, rand(0, 50))->create([
                     'producto_id' => $producto->id,
